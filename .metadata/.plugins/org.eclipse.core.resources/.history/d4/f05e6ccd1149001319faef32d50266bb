@@ -1,0 +1,89 @@
+package com.example.photos;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.*;
+
+public class Add extends Activity {
+
+	DatePicker min;
+	DatePicker max;
+	CheckBox reminder;
+	EditText name;
+	Button Submit;
+	int year;
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
+        
+        Submit = (Button)findViewById(R.id.button);
+        name   = (EditText)findViewById(R.id.edittext);
+        min = (DatePicker)findViewById(R.id.button);
+        max   = (DatePicker)findViewById(R.id.edittext);
+        reminder = (CheckBox)findViewById(R.id.button);
+
+        mButton.setOnClickListener(
+            new View.OnClickListener()
+            {
+                public void onClick(View view)
+                {
+                    Log.v("EditText", mEdit.getText().toString());
+                }
+            });
+    }
+
+    public void addListenerOnButton() {
+    	 
+    	radioSexGroup = (RadioGroup) findViewById(R.id.radioSex);
+    	btnDisplay = (Button) findViewById(R.id.btnDisplay);
+     
+    	btnDisplay.setOnClickListener(new OnClickListener() {
+     
+    		@Override
+    		public void onClick(View v) {
+     
+    		        // get selected radio button from radioGroup
+    			int selectedId = radioSexGroup.getCheckedRadioButtonId();
+     
+    			// find the radiobutton by returned id
+    		        radioSexButton = (RadioButton) findViewById(selectedId);
+     
+    			Toast.makeText(MyAndroidAppActivity.this,
+    				radioSexButton.getText(), Toast.LENGTH_SHORT).show();
+     
+    		}
+     
+    	});
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.add, menu);
+        return true;
+    }
+    
+    protected void onDestroy() {
+        super.onDestroy();
+        // The activity is about to be destroyed.
+    }
+    
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_pirates:
+                if (checked)
+                    // Pirates are the best
+                break;
+            case R.id.radio_ninjas:
+                if (checked)
+                    // Ninjas rule
+                break;
+        }
+    }
+    
+}
